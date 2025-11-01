@@ -16,6 +16,15 @@ liensMobile.forEach(lien => {
     });
 });
 
+// Fermer le menu mobile lors du clic sur le bouton contact mobile
+const boutonContactMobile = document.querySelector('.bouton-contact-mobile');
+if (boutonContactMobile) {
+    boutonContactMobile.addEventListener('click', () => {
+        menuMobile.classList.remove('actif');
+        boutonMenu.classList.remove('actif');
+    });
+}
+
 // Données des réalisations
 const realisations = [
     {
@@ -86,7 +95,7 @@ function initVideos() {
         iframe.frameBorder = '0';
         iframe.allow = 'autoplay; fullscreen; picture-in-picture';
         iframe.allowFullscreen = true;
-        iframe.style.cssText = 'position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 1.8rem;';
+        iframe.style.cssText = 'position: absolute; top: 0; left: 0; width: 100%; height: 100%-10%; border: none';
         if (i === 0) {
             iframe.style.opacity = '1';
             iframe.style.zIndex = '1';
@@ -160,12 +169,6 @@ function mettreAJour() {
     if (cadre) {
         cadre.style.background = c1;
         cadre.style.boxShadow = `0 10px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.4)`;
-    }
-    
-    // Appliquer la couleur à la bordure de la vidéo
-    const videoContainerEl = document.querySelector('.video-container');
-    if (videoContainerEl) {
-        videoContainerEl.style.borderColor = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.6)`;
     }
     
     // Appliquer la couleur aux effets lumineux
@@ -353,6 +356,12 @@ document.querySelectorAll('a[href^="#"]').forEach(lien => {
         
         if (cibleId === '#') return;
         
+        // Fermer le menu mobile si ouvert
+        if (menuMobile && menuMobile.classList.contains('actif')) {
+            menuMobile.classList.remove('actif');
+            if (boutonMenu) boutonMenu.classList.remove('actif');
+        }
+        
         const elementCible = document.querySelector(cibleId);
         if (elementCible) {
             const offsetTop = elementCible.offsetTop - 80;
@@ -378,6 +387,4 @@ window.addEventListener('resize', () => {
     }, 250);
 });
 
-// Log pour confirmer que le script est chargé
-console.log('MSK Création - Site Web chargé avec succès');
 
