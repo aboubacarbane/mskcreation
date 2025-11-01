@@ -74,15 +74,31 @@ html {
     transform: scale(1.05);
 }
 
+.bouton-contact-mobile {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
 /* Menu Mobile */
 .bouton-menu {
+    display: none;
     background: transparent;
     border: none;
     cursor: pointer;
     padding: 0.5rem;
-    display: flex;
     flex-direction: column;
     gap: 0.25rem;
+}
+
+@media (max-width: 768px) {
+    .bouton-menu {
+        display: flex;
+    }
 }
 
 .barre-menu {
@@ -139,18 +155,22 @@ html {
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at 20% 50%, rgba(124, 58, 237, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
-    animation: pulseGradient 8s ease-in-out infinite;
+    background-image: 
+        linear-gradient(rgba(124, 58, 237, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124, 58, 237, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: 0;
 }
 
-@keyframes pulseGradient {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.6;
-    }
+.section-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60%;
+    background: radial-gradient(ellipse at center bottom, rgb(255, 255, 255) 0%, transparent 70%);
+    z-index: 0;
 }
 
 .contenu-hero {
@@ -245,21 +265,20 @@ html {
     background: #ffffff;
     border: 1px solid rgba(255, 255, 255, 1);
     border-radius: 0.7rem;
-    padding: 0.7rem;
+    padding: 0.1rem;
     text-align: center;
     transition: all 0.3s ease;
 }
 
 
 .nombre-stat {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 700;
     color: #2563eb;
-    margin-bottom: 0rem;
 }
 
 .texte-stat {
-    color: #a3a3a3;
+    color: #6e6d6d;
     font-size: 0.95rem;
 }
 
@@ -308,7 +327,7 @@ html {
     font-weight: 900;
     text-align: center;
     margin-bottom: 3rem;
-    color: #ffffff;
+    /* color: #ffffff; */
     line-height: 1.2;
 }
 
@@ -389,18 +408,18 @@ html {
 .section-realisations {
     padding: 6rem 0;
     background: 
-        radial-gradient(circle at 0% 0%, #e9d5ff 0%, transparent 15%),
-        radial-gradient(circle at 100% 35%, #ffbf004d 0%, transparent 12%),
-        radial-gradient(circle at 50% 90%, #bfdbfe 0%, transparent 25%),
+        radial-gradient(circle at 0% 0%, #e9d5ff 0%, transparent 10%),
+        radial-gradient(circle at 100% 30%, #ffbf004d 0%, transparent 10%),
+        radial-gradient(circle at 50% 90%, #bfdbfe 0%, transparent 20%),
         radial-gradient(circle at 50% 50%, #f0f9ff 0%, #eef2ff 100%);
 }
 
 .titre-section-blanc {
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: 900;
     text-align: center;
     margin-bottom: 1rem;
-    background: linear-gradient(135deg, #4f46e5 0%, #9333ea 50%, #db2777 100%);
+    background: linear-gradient(to right, #4f46e5 0%, #db2777 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -408,12 +427,37 @@ html {
 
 .sous-titre-section {
     text-align: center;
-    color: #a3a3a3;
-    font-size: 1.125rem;
+    color: #676767;
+    font-size: 1.5rem;
     margin-bottom: 4rem;
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
+    padding-top: 2rem;
+    position: relative;
+}
+
+.sous-titre-section::after {
+    content: '';
+    position: absolute;
+    bottom: -1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 3px;
+    background: linear-gradient(to right, #4f46e5 0%, #db2777 100%);
+    border-radius: 2px;
+}
+
+/* Animation douce pour le titre et le sous-titre des réalisations */
+/* Effet 3D doux: la zone d'entête avance sans étirer le texte */
+.section-realisations .entete-realisations {
+    transition: transform 0.5s ease;
+    transform-origin: center;
+    padding-bottom: 2rem;
+}
+.section-realisations .entete-realisations:hover {
+    transform: scale(1.05);
 }
 
 /* Bloc principal avec deux colonnes */
@@ -421,11 +465,16 @@ html {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
     padding: 0 3rem;
     align-items: stretch;
+    /* transition: transform 0.5s ease;
+    transform-origin: center;
+    padding-bottom: 2rem; */
 }
+
+
 
 .colonne-gauche {
     display: flex;
@@ -437,79 +486,66 @@ html {
 .colonne-droite {
     position: relative;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     padding-left: 1rem;
 }
 
-/* Cadre vidéo avec dégradé coloré et incliné - style téléphone */
+/* Cadre vidéo rouge vif avec lueur et ombre */
 .cadre-video {
     position: relative;
-    transform: rotate(2deg);
-    padding: 20px;
-    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #ff4444 100%);
-    border-radius: 2.5rem;
+    padding: 30px 15px 30px 15px;
+    background: #ff0000;
+    border-radius: 1.5rem;
     box-shadow: 
-        0 0 30px rgba(255, 107, 53, 0.6),
-        inset 0 0 25px rgba(255, 107, 53, 0.25),
-        0 10px 40px rgba(0, 0, 0, 0.3);
-    transition: background 0.5s ease, box-shadow 0.5s ease, transform 0.4s ease;
+        0 10px 40px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(255, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     width: 100%;
-    max-width: 320px;
+    max-width: 280px;
     margin: 0 auto;
-    border: 3px solid transparent;
+    transform: rotate(2deg);
+    /* margin-top: 0rem; */
 }
 
-/* Bordure fine qui traverse la grosse bordure */
-.cadre-video > .video-container::before {
-    content: '';
-    position: absolute;
-    top: -20px;
-    bottom: -20px;
-    left: -12px;
-    right: -12px;
-    border-left: 1px solid rgba(255, 255, 255, 0.3);
-    border-right: 1px solid rgba(255, 255, 255, 0.3);
-    pointer-events: none;
-    z-index: 3;
-}
-
-.cadre-video::before {
-    content: '';
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
-    border-radius: 50%;
-    z-index: 2;
-    pointer-events: none;
-}
-
-.cadre-video::after {
-    content: '';
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    width: 50px;
-    height: 50px;
-    background: radial-gradient(circle, rgba(0, 255, 255, 0.4) 0%, transparent 70%);
-    border-radius: 50%;
-    z-index: 2;
-    pointer-events: none;
+.cadre-video:hover {
+    transform: rotate(0deg) scale(1.02);
 }
 
 .video-container {
     position: relative;
     width: 100%;
     aspect-ratio: 9 / 13;
-    border-radius: 1.8rem;
+    border-radius: 1rem;
     overflow: hidden;
-    background: #000;
-    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
-    border-top: 1px solid rgba(255, 255, 255, 0.3);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    background: transparent;
     z-index: 1;
+    border: 2px solid rgba(255, 100, 150, 0.6);
+    box-sizing: border-box;
+}
+
+/* Effets lumineux sur le contour du cadre */
+.lueur-haut-droite {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle, rgba(255, 200, 255, 0.5) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.lueur-bas-gauche {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle, rgba(255, 200, 255, 0.5) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 3;
+    pointer-events: none;
 }
 
 .video-realisation {
@@ -526,7 +562,7 @@ html {
 .controles-carrousel {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1rem;
     align-items: flex-start;
     margin-top: 2rem;
 }
@@ -547,13 +583,15 @@ html {
 }
 
 .carte-realisation {
-    background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+    /* background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%); */
     border-radius: 1.5rem;
     padding: 2.5rem;
-    transition: all 0.4s ease;
     position: relative;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.5s ease;
+    transform-origin: center;
+    padding-bottom: 2rem;
 }
 
 .carte-realisation > * {
@@ -575,58 +613,30 @@ html {
     z-index: 0;
 }
 
-.carte-realisation:hover::before {
-    opacity: 1;
-}
-
-.carte-realisation:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 15px 40px rgba(124, 58, 237, 0.3);
-    border-color: #7c3aed;
-}
-
-/* Effet de survol global de la section: zoom léger de la carte et du cadre vidéo */
-.section-realisations:hover .cadre-video {
-    transform: rotate(0deg) scale(1.03);
-}
-
-.section-realisations:hover .carte-realisation {
-    transform: translateY(-5px) scale(1.02);
-}
 
 /* Flèches du carrousel */
 .fleche-carrousel {
-    background: #f5f5f5;
+    background: #f3f4f6;
     border: none;
     color: #4a4a4a;
     width: 2.5rem;
     height: 2.5rem;
-    border-radius: 2rem;
+    border-radius: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
     flex-shrink: 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     font-size: 1.25rem;
     font-weight: 400;
+    margin-bottom: 0.5rem;
 }
 
 .fleche-carrousel:hover {
-    background: #e5e5e5;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    background: #e5e7eb;
 }
 
-.fleche-carrousel:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-}
-
-.fleche-carrousel:disabled:hover {
-    background: #f5f5f5;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
 
 .double-chevron {
     display: inline-block;
@@ -660,14 +670,18 @@ html {
 .contenu-realisation {
     position: relative;
     z-index: 1;
+    transition: transform 0.5s ease;
+}
+
+.carte-realisation:hover .contenu-realisation {
+    transform: scale(1.05);
 }
 
 .badge-realisation {
     display: inline-block;
-    background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
     color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
+    padding: 0.25rem 1rem;
+    border-radius: 1rem;
     font-size: 0.875rem;
     font-weight: 600;
     margin-bottom: 1rem;
@@ -675,9 +689,9 @@ html {
 
 .nom-realisation {
     font-size: 2rem;
-    font-weight: 800;
+    font-weight: 600;
     margin-bottom: 0.5rem;
-    color: white;
+    color: #000000;
     transition: color 0.5s ease;
 }
 
@@ -685,39 +699,37 @@ html {
 .bloc-instagram {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    padding: 0.75rem 1rem;
-    border-radius: 0.75rem;
-    background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(147, 51, 234, 0.1) 50%, rgba(219, 39, 119, 0.1) 100%);
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    background: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #eab308 100%);
     margin-bottom: 1.5rem;
     position: relative;
-    border: 1px solid transparent;
-    max-width: fit-content;
+    /* border: 1px solid transparent; */
+    max-width: 50%;
 }
 
-.bloc-instagram::before {
-    content: '';
-    position: absolute;
-    top: -1px;
-    left: -1px;
-    right: -1px;
-    bottom: -1px;
-    background: linear-gradient(135deg, #4f46e5 0%, #9333ea 50%, #db2777 100%);
-    border-radius: 0.75rem;
-    z-index: -1;
-}
 
 .icone-instagram {
-    flex-shrink: 0;
-    width: 24px;
-    height: 24px;
-    color: #9333ea;
+    /* flex-shrink: 0; */
+    background-color: white;
+    border-radius: 50%;
+    padding: 0.5rem;
+    width: 30px;
+    height: 30px;
+    color: #d74040;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0.5rem;
 }
 
 .info-instagram {
     display: flex;
+    color: white;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.1rem;
     flex: 1;
 }
 
@@ -726,38 +738,32 @@ html {
     margin: 0;
     font-size: 1rem;
     font-weight: 600;
-    background: linear-gradient(135deg, #4f46e5 0%, #9333ea 50%, #db2777 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
 }
 
 .abonnes-realisation {
     margin: 0;
     display: flex;
     align-items: baseline;
-    gap: 0.5rem;
+    gap: 0.25rem;
 }
 
 .nombre-abonnes {
-    font-size: 1.5rem;
-    font-weight: 900;
-    background: linear-gradient(135deg, #4f46e5 0%, #9333ea 50%, #db2777 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin: 0;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: white;
 }
 
 .texte-abonnes {
-    color: #a3a3a3;
-    font-size: 1rem;
+    color: white;
+    font-size: 0.88rem;
+    font-weight: 600;
+
 }
 
 .description-realisation {
-    color: #a3a3a3;
+    color: #595959;
     line-height: 1.6;
-    font-size: 1.125rem;
+    font-size: 1.2rem;
 }
 
 /* Section FAQ */
@@ -787,6 +793,7 @@ html {
     margin-bottom: 1rem;
     overflow: hidden;
     transition: all 0.3s ease;
+    position: relative;
 }
 
 .item-faq:hover {
@@ -815,12 +822,6 @@ html {
     flex: 1;
     position: relative;
     padding-left: 1.5rem;
-}
-
-/* Barre verticale noire à gauche de la réponse */
-.item-faq.actif .reponse-faq {
-    border-left: 1px solid #36363684;
-    margin-left: 1rem;
 }
 
 /* Barre verticale colorée à gauche du texte-question */
@@ -868,14 +869,16 @@ html {
 
 .reponse-faq {
     max-height: 0;
-    overflow: hidden;
     transition: max-height 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .reponse-faq p {
     padding: 0 1.5rem 1.5rem;
     color: #242222;
     line-height: 1.7;
+    overflow: hidden;
 }
 
 .item-faq.actif .reponse-faq {
@@ -1067,11 +1070,8 @@ html {
     .bloc-principal {
         display: flex;
         flex-direction: column;
-        gap: 2rem;
-    }
-
-    .bloc-principal {
-        position: relative;
+        gap: 3rem;
+        padding: 0 1.5rem;
     }
 
     .colonne-gauche {
@@ -1098,13 +1098,15 @@ html {
     }
 
     .cadre-video {
-        transform: rotate(0deg);
-        padding: 15px;
+        margin-top: 0;
+    }
+
+    .cadre-video:hover {
+        transform: rotate(0deg) scale(1.02);
     }
 
     .video-container {
         max-width: 280px;
-        padding-bottom: 177.78%;
     }
 
     .grille-footer {
@@ -1143,6 +1145,7 @@ html {
     .carte-realisation {
         padding: 2rem;
     }
+    
 }
 
 /* Animations d'apparition au scroll */

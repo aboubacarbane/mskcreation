@@ -150,12 +150,33 @@ function mettreAJour() {
     // Mettre à jour les couleurs
     const [c1, c2, c3] = r.couleur;
     const rgb = hexToRgb(c1);
-    if (cadre) {
-        cadre.style.background = `linear-gradient(135deg, ${c1} 0%, ${c2} 50%, ${c3} 100%)`;
-        cadre.style.boxShadow = `0 0 30px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.6), inset 0 0 25px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.25), 0 10px 40px rgba(0, 0, 0, 0.3)`;
+    
+    // Appliquer la couleur au badge
+    if (badgeEl) {
+        badgeEl.style.background = `linear-gradient(135deg, ${c1} 0%, ${c2} 100%)`;
     }
+    
+    // Appliquer la couleur au cadre vidéo
+    if (cadre) {
+        cadre.style.background = c1;
+        cadre.style.boxShadow = `0 10px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.4)`;
+    }
+    
+    // Appliquer la couleur à la bordure de la vidéo
+    const videoContainerEl = document.querySelector('.video-container');
+    if (videoContainerEl) {
+        videoContainerEl.style.borderColor = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.6)`;
+    }
+    
+    // Appliquer la couleur aux effets lumineux
+    const lueurHaut = document.querySelector('.lueur-haut-droite');
+    const lueurBas = document.querySelector('.lueur-bas-gauche');
+    if (lueurHaut) lueurHaut.style.background = `radial-gradient(circle, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.5) 0%, transparent 70%)`;
+    if (lueurBas) lueurBas.style.background = `radial-gradient(circle, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.5) 0%, transparent 70%)`;
+    
+    // Nom en noir
     if (nomEl) {
-        nomEl.style.color = c1;
+        nomEl.style.color = '#000000';
     }
     
     // Afficher la vidéo
@@ -166,9 +187,9 @@ function mettreAJour() {
         ind.classList.toggle('actif', i === index);
     });
     
-    // Désactiver les flèches
-    flecheGauche.disabled = index === 0;
-    flecheDroite.disabled = index === realisations.length - 1;
+    // Ne plus désactiver les flèches
+    // flecheGauche.disabled = index === 0;
+    // flecheDroite.disabled = index === realisations.length - 1;
 }
 
 // Fonction pour convertir hex en RGB
@@ -182,17 +203,19 @@ function hexToRgb(hex) {
 }
 
 flecheGauche.addEventListener('click', () => {
-    if (index > 0) {
-        index--;
-        mettreAJour();
+    index--;
+    if (index < 0) {
+        index = realisations.length - 1;
     }
+    mettreAJour();
 });
 
 flecheDroite.addEventListener('click', () => {
-    if (index < realisations.length - 1) {
-        index++;
-        mettreAJour();
+    index++;
+    if (index >= realisations.length) {
+        index = 0;
     }
+    mettreAJour();
 });
 
 indicateurs.forEach((ind, i) => {
@@ -340,49 +363,6 @@ document.querySelectorAll('a[href^="#"]').forEach(lien => {
         }
     });
 });
-
-// Animation des nombres dans les statistiques
-function animeCompteur(element, cible, duree) {
-    let debut = 0;
-    const increment = cible / (duree / 16);
-    
-    const timer = setInterval(() => {
-        debut += increment;
-        if (debut >= cible) {
-            element.textContent = cible + (element.dataset.suffixe || '');
-            clearInterval(timer);
-        } else {
-            element.textContent = Math.floor(debut) + (element.dataset.suffixe || '');
-        }
-    }, 16);
-}
-
-// Observer pour lancer l'animation des compteurs
-const observateurStats = new IntersectionObserver((entrees) => {
-    entrees.forEach(entree => {
-        if (entree.isIntersecting && !entree.target.dataset.anime) {
-            entree.target.dataset.anime = 'true';
-            const nombresStats = entree.target.querySelectorAll('.nombre-stat');
-            
-            nombresStats.forEach(nombre => {
-                const texte = nombre.textContent;
-                const valeur = parseInt(texte);
-                const suffixe = texte.replace(/[0-9]/g, '');
-                nombre.dataset.suffixe = suffixe;
-                nombre.textContent = '0';
-                
-                setTimeout(() => {
-                    animeCompteur(nombre, valeur, 2000);
-                }, 300);
-            });
-        }
-    });
-}, { threshold: 0.5 });
-
-const grilleStats = document.querySelector('.grille-stats');
-if (grilleStats) {
-    observateurStats.observe(grilleStats);
-}
 
 // Préchargement terminé
 window.addEventListener('load', () => {

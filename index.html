@@ -13,7 +13,7 @@
     
     <!-- Navigation -->
     <nav class="navigation fixed w-full z-50 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="px-4 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="logo-container">
                     <img src="image/logo.webp" alt="MSK Création">
@@ -26,7 +26,7 @@
                     <a href="#realisations" class="lien-nav">Réalisations</a>
                     <a href="#faq" class="lien-nav">Faq</a>
                 </div>
-                <div class="hidden md:flex items-center"><a href="#contact" class="bouton-contact-mobile inline-flex items-center gap-2"><i class="fa-regular fa-comment"></i>Nous contacter</a></div>
+                <div class="hidden md:flex items-center"><a href="#contact" class="bouton-contact inline-flex items-center gap-2"><i class="fa-regular fa-comment"></i>Nous contacter</a></div>
 
                 <!-- Bouton Menu Mobile -->
                 <button class="md:hidden bouton-menu" id="boutonMenu">
@@ -45,7 +45,7 @@
                 <a href="#realisations" class="lien-mobile">Réalisations</a>
                 <a href="#faq" class="lien-mobile">Faq</a>
             </div>
-            <div class="px-4 pb-4 width-full">
+            <div class="px-2 pb-4 width-full">
                 <a href="#contact" class="bouton-contact-mobile inline-flex items-center gap-2"><i class="fa-regular fa-comment"></i>Nous contacter</a>
             </div>
         </div>
@@ -92,12 +92,11 @@
 
     <!-- Section Expertises -->
     <section id="expertises" class="section-expertises bg-gradient-to-b from-gray-950 to-gray-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-4">
             <h2 class="titre-section">
                 Découvrez<br>
                 l'ensemble de nos <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-600">expertises</span>
             </h2>
-
             <div class="grille-expertises">
                 <!-- Expertise 1 -->
                 <div class="carte-expertise">
@@ -155,10 +154,12 @@
     <!-- Section Réalisations -->
     <section id="realisations" class="section-realisations">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="titre-section-blanc">Nos Réalisations</h2>
-            <p class="sous-titre-section">
-                Découvrez nos projets qui ont aidé ces clients à améliorer leur visibilité en ligne.
-            </p>
+            <div class="entete-realisations">
+                <h2 class="titre-section-blanc">Nos Réalisations</h2>
+                <p class="sous-titre-section">
+                    Découvrez nos projets qui ont aidé ces clients à améliorer leur </br> visibilité en ligne.
+                </p>
+            </div>
 
             <div class="bloc-principal">
                 <!-- Colonne de gauche : Contenu texte -->
@@ -168,11 +169,7 @@
                             <div class="badge-realisation">Expert Finance</div>
                             <h3 class="nom-realisation">Andreas Maack</h3>
                             <div class="bloc-instagram">
-                                <svg class="icone-instagram" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                                </svg>
+                                <i class="fa-brands fa-instagram icone-instagram"></i>
                                 <div class="info-instagram">
                                     <p class="handle-realisation">@andreasmaack_</p>
                                     <div class="abonnes-realisation">
@@ -181,9 +178,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="description-realisation">
+                            <em class="description-realisation">
                                 💰 Expert en finance, guide pour épargner et investir intelligemment.
-                            </p>
+                            </em>
                         </div>
                     </div>
                     
@@ -210,6 +207,8 @@
                 <!-- Colonne de droite : Vidéo dans un cadre coloré incliné -->
                 <div class="colonne-droite">
                     <div class="cadre-video">
+                        <div class="lueur-haut-droite"></div>
+                        <div class="lueur-bas-gauche"></div>
                         <div class="video-container">
                             <div id="vimeo-player-container"></div>
                         </div>
