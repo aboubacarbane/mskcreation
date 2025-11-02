@@ -173,16 +173,6 @@ body {
     z-index: 0;
 }
 
-/* .section-hero::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 60%;
-    background: radial-gradient(ellipse at center bottom, rgb(255, 255, 255) 0%, transparent 70%);
-    z-index: 0;
-} */
 
 .contenu-hero {
     position: relative;
@@ -293,7 +283,6 @@ body {
     font-size: 0.95rem;
 }
 
-/* Badge disponible */
 .badge-disponible {
     display: inline-flex;
     align-items: center;
@@ -316,16 +305,6 @@ body {
     border-radius: 50%;
 }
 
-@keyframes pulse {
-    0%, 100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-    50% {
-        opacity: 0.5;
-        transform: scale(1.3);
-    }
-}
 
 /* Section Expertises */
 .section-expertises {
@@ -338,7 +317,13 @@ body {
     font-weight: 900;
     text-align: center;
     margin-bottom: 3rem;
-    /* color: #ffffff; */
+    line-height: 1.2;
+}
+.titre-section-faq {
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 3rem;
     line-height: 1.2;
 }
 
@@ -364,7 +349,7 @@ body {
 .carte-expertise:hover {
     transform: translateY(-10px);
     background: linear-gradient(145deg, #0f172a 0%, #192d4e 100%);
-    border-color: #3b82f6 solid 1px;
+    border: 1px solid #3b82f6;
 }
 
 .carte-expertise:hover .titre-expertise {
@@ -389,7 +374,7 @@ body {
 }
 
 .titre-expertise {
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 700;
     margin-bottom: 1rem;
     color: #ffffff;
@@ -398,7 +383,7 @@ body {
 .description-expertise {
     color: #a3a3a3;
     line-height: 1.6;
-    font-size: 1rem;
+    font-size: 0.8rem;
 }
 
 .bouton-secondaire {
@@ -440,7 +425,7 @@ body {
 .sous-titre-section {
     text-align: center;
     color: #676767;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     margin-bottom: 4rem;
     max-width: 700px;
     margin-left: auto;
@@ -461,8 +446,6 @@ body {
     border-radius: 2px;
 }
 
-/* Animation douce pour le titre et le sous-titre des réalisations */
-/* Effet 3D doux: la zone d'entête avance sans étirer le texte */
 .section-realisations .entete-realisations {
     transition: transform 0.5s ease;
     transform-origin: center;
@@ -481,9 +464,6 @@ body {
     margin: 0 auto;
     padding: 0 3rem;
     align-items: stretch;
-    /* transition: transform 0.5s ease;
-    transform-origin: center;
-    padding-bottom: 2rem; */
 }
 
 
@@ -502,7 +482,6 @@ body {
     padding-left: 1rem;
 }
 
-/* Cadre vidéo rouge vif avec lueur et ombre */
 .cadre-video {
     position: relative;
     padding: 30px;
@@ -529,14 +508,11 @@ body {
     position: relative;
     width: 100%;
     aspect-ratio: 9 / 14;
-    /* border-radius: 1rem; */
     overflow: hidden;
     background: transparent;
     z-index: 1;
-    /* box-sizing: border-box; */
 }
 
-/* S'assurer que la vidéo n'est pas grisée */
 #vimeo-player-container,
 #vimeo-player-container iframe {
     filter: none !important;
@@ -594,7 +570,6 @@ body {
 }
 
 .carte-realisation {
-    /* background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%); */
     border-radius: 1.5rem;
     padding: 2.5rem;
     position: relative;
@@ -625,7 +600,6 @@ body {
 }
 
 
-/* Flèches du carrousel */
 .fleche-carrousel {
     background: #f3f4f6;
     border: none;
@@ -655,7 +629,6 @@ body {
     line-height: 1;
 }
 
-/* Indicateurs du carrousel */
 .indicateurs-carrousel {
     display: flex;
     justify-content: center;
@@ -706,7 +679,6 @@ body {
     transition: color 0.5s ease;
 }
 
-/* Bloc Instagram avec bordure et dégradé */
 .bloc-instagram {
     display: flex;
     align-items: center;
@@ -717,14 +689,11 @@ body {
     background: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #eab308 100%);
     margin-bottom: 1.5rem;
     position: relative;
-    /* border: 1px solid transparent; */
-    /* max-width: 50%; */
     width: fit-content;
 }
 
 
 .icone-instagram {
-    /* flex-shrink: 0; */
     background-color: white;
     border-radius: 50%;
     padding: 0.5rem;
@@ -826,6 +795,7 @@ body {
 
 
 .texte-question {
+    font-size: 1rem;
     flex: 1;
     position: relative;
     padding-left: 1.5rem;
@@ -876,6 +846,7 @@ body {
 }
 
 .reponse-faq {
+    font-size: 0.8rem;
     max-height: 0;
     transition: max-height 0.3s ease;
     position: relative;
@@ -909,12 +880,10 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    /* color: #ffffff; */
 }
 
 /* Section Footer */
 .section-footer {
-    /* background: rgba(0, 0, 0, 0.3); */
     padding: 4rem 0 2rem;
     border-top: 1px solid #ffffff1a;
 }
@@ -931,7 +900,7 @@ body {
 }
 
 .logo-footer {
-    height: 60px;
+    height: 50px;
     width: auto;
     object-fit: contain;
     filter: brightness(0) invert(1);
@@ -952,7 +921,7 @@ body {
     padding-bottom: 1rem;
 }
 
-/* Une seule ligne continue sous chaque titre du footer */
+/* ligne continue sous chaque titre du footer */
 .titre-footer::after {
     content: '';
     position: absolute;
@@ -1062,6 +1031,10 @@ body {
         font-size: 3rem;
     }
 
+    .titre-section-faq {
+        font-size: 2rem;
+    }
+
     .grille-stats {
         grid-template-columns: repeat(2, 1fr);
         gap: 0.5rem;
@@ -1076,9 +1049,6 @@ body {
         grid-template-columns: 1fr;
     }
 
-    .titre-expertise {
-        font-size: 1.23rem;
-    }
     .section-realisations {
         padding: 6rem 0;
         background: 
@@ -1106,6 +1076,10 @@ body {
             radial-gradient(circle at 50% 50%, #f0f9ff 0%, #eef2ff 100%);
     }
 
+    .sous-titre-section-faq {
+        font-size: 0.8rem;
+    }
+
     .description-footer {
         font-size: 0.9rem;
     }
@@ -1114,7 +1088,6 @@ body {
         margin-left: -20px;
         margin-right: -20px;
     }
-    /* Bouton contact pleine largeur et centré sur mobile */
     .bouton-contact-mobile {
         background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
         color: white;
@@ -1167,7 +1140,6 @@ body {
         max-width: 280px;
     }
 
-    /* Correction du contour grisé sur mobile */
     .cadre-video::after {
         border-color: rgba(255, 255, 255, 0.3) !important;
         -webkit-transform: translateZ(0);

@@ -7,11 +7,11 @@ boutonMenu.addEventListener('click', () => {
     boutonMenu.classList.toggle('actif');
 });
 
-// Fermer le menu mobile lors du clic sur un lien
+// Fermeture du menu mobile lors du clic sur un lien
 const liensMobile = document.querySelectorAll('.lien-mobile');
 liensMobile.forEach(lien => {
     lien.addEventListener('click', () => {
-        // Ajouter la classe active au lien cliqué
+        // Ajout de la classe active au lien cliqué
         liensMobile.forEach(l => l.classList.remove('active'));
         lien.classList.add('active');
         
@@ -20,7 +20,7 @@ liensMobile.forEach(lien => {
     });
 });
 
-// Fermer le menu mobile lors du clic sur le bouton contact mobile
+// Fermeture du menu mobile lors du clic sur le bouton contact mobile
 const boutonContactMobile = document.querySelector('.bouton-contact-mobile');
 if (boutonContactMobile) {
     boutonContactMobile.addEventListener('click', () => {
@@ -38,7 +38,7 @@ const realisations = [
         abonnes: '22.9K',
         description: '💰 Expert en finance, guide pour épargner et investir intelligemment.',
         video: 'https://player.vimeo.com/video/1066106524?h=6d45c0f810&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=player0&background=1&app_id=58479',
-        couleur: ['#ef4444', '#dc2626'] // Rouge-orange pour Andreas
+        couleur: ['#ef4444', '#dc2626']
     },
     {
         badge: 'Gestionnaire patrimonial',
@@ -47,7 +47,7 @@ const realisations = [
         abonnes: '17.7K',
         description: '💸 Expert en gestion de patrimoine ayant réalisé plus de 200 projets immobiliers avec succès.',
         video: 'https://player.vimeo.com/video/1066109636?h=6f9a86b6d3&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=player1&background=1&app_id=58479',
-        couleur: ['#a855f7', '#7e22ce'] // Violet pour Marie
+        couleur: ['#a855f7', '#7e22ce']
     },
     {
         badge: 'Podcasteur',
@@ -56,7 +56,7 @@ const realisations = [
         abonnes: '17.4K',
         description: '🎙️ Podcasteur et journaliste produisant du contenu vidéo et audio sur divers sujets.',
         video: 'https://player.vimeo.com/video/1066110013?h=07be361f94&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=player2&background=1&app_id=58479',
-        couleur: ['#eab308', '#d97706'] // Rose-jaune pour Sophie
+        couleur: ['#eab308', '#d97706']
     },
     {
         badge: 'Entrepreneur',
@@ -65,7 +65,7 @@ const realisations = [
         abonnes: '6.6K',
         description: '🎥 Entrepreneur ayant créé orsay.ai, une plateforme innovante pour la gestion de projets et la collaboration en ligne.',
         video: 'https://player.vimeo.com/video/1066107128?h=ab229066e0&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=player3&background=1&app_id=58479',
-        couleur: ['#3b82f6', '#1d4ed8'] // Vert-cyan pour Thomas
+        couleur: ['#3b82f6', '#1d4ed8']
     },
     {
         badge: 'Entrepreneur',
@@ -74,7 +74,7 @@ const realisations = [
         abonnes: '1.3K',
         description: '💶 Entrepreneur aidant les clients à optimiser la rentabilité de leurs marques.',
         video: 'https://player.vimeo.com/video/1066109193?h=33811542f7&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=player4&background=1&app_id=58479',
-        couleur: ['#22c55e', '#059669'] // Jaune-orange pour Lucas
+        couleur: ['#22c55e', '#059669']
     }
 ];
 
@@ -84,7 +84,6 @@ const flecheDroite = document.getElementById('flecheDroite');
 const indicateurs = document.querySelectorAll('.indicateur');
 const carte = document.querySelector('.colonne-gauche .carte-realisation');
 const cadre = document.querySelector('.cadre-video');
-const titre = carte.querySelector('.nom-realisation');
 const videoContainer = document.getElementById('vimeo-player-container');
 let index = 0;
 const players = [];
@@ -96,10 +95,9 @@ function initVideos() {
         iframe.src = r.video;
         iframe.width = '100%';
         iframe.height = '100%';
-        iframe.frameBorder = '0';
         iframe.allow = 'autoplay; fullscreen; picture-in-picture';
         iframe.allowFullscreen = true;
-        iframe.style.cssText = 'position: absolute; top: 0; left: 0; width: 100%; height: 100%-10%; border: none';
+        iframe.style.cssText = 'position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;';
         if (i === 0) {
             iframe.style.opacity = '1';
             iframe.style.zIndex = '1';
@@ -110,7 +108,7 @@ function initVideos() {
         }
         videoContainer.appendChild(iframe);
         
-        // Initialiser le player Vimeo si disponible
+        // Initialisation du player Vimeo
         if (typeof Vimeo !== 'undefined') {
             const player = new Vimeo.Player(iframe);
             players.push(player);
@@ -120,11 +118,17 @@ function initVideos() {
     });
 }
 
-// Attendre que l'API Vimeo soit chargée
+// Fonction d'initialisation complète
+function initialiser() {
+    initVideos();
+    mettreAJour();
+}
+
+// Attendre que l'API Vimeo soit chargée et initialiser tout
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initVideos);
+    document.addEventListener('DOMContentLoaded', initialiser);
 } else {
-    setTimeout(initVideos, 100);
+    setTimeout(initialiser, 100);
 }
 
 function chargerVideo(idx) {
@@ -145,7 +149,7 @@ function chargerVideo(idx) {
 function mettreAJour() {
     const r = realisations[index];
     
-    // Mettre à jour le texte - récupérer les éléments à chaque fois pour éviter les problèmes de cache
+    // Mise à jour du texte - récupération des éléments à chaque fois
     const badgeEl = carte.querySelector('.badge-realisation');
     const nomEl = carte.querySelector('.nom-realisation');
     const handleEl = carte.querySelector('.handle-realisation');
@@ -160,7 +164,7 @@ function mettreAJour() {
     if (abonnesEl) abonnesEl.textContent = r.abonnes;
     if (descriptionEl) descriptionEl.textContent = r.description;
     
-    // Mettre à jour les couleurs
+    // Mise à jour des couleurs
     const [c1, c2] = r.couleur;
     const rgb = hexToRgb(c1);
     
@@ -171,32 +175,23 @@ function mettreAJour() {
     
     // Appliquer la couleur au cadre vidéo
     if (cadre) {
-        cadre.style.background = c1;
+        cadre.style.background = `linear-gradient(to right, ${c1} 0%, ${c2} 100%)`;
         cadre.style.boxShadow = `0 10px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.4)`;
     }
-    
-    // Appliquer la couleur aux effets lumineux
-    const lueurHaut = document.querySelector('.lueur-haut-droite');
-    const lueurBas = document.querySelector('.lueur-bas-gauche');
-    if (lueurHaut) lueurHaut.style.background = `radial-gradient(circle, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.5) 0%, transparent 70%)`;
-    if (lueurBas) lueurBas.style.background = `radial-gradient(circle, rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.5) 0%, transparent 70%)`;
     
     // Nom en noir
     if (nomEl) {
         nomEl.style.color = '#000000';
     }
     
-    // Afficher la vidéo
+    // Affichage de la vidéo
     chargerVideo(index);
     
-    // Mettre à jour les indicateurs
+    // Mise à jour des indicateurs
     indicateurs.forEach((ind, i) => {
         ind.classList.toggle('actif', i === index);
     });
-    
-    // Ne plus désactiver les flèches
-    // flecheGauche.disabled = index === 0;
-    // flecheDroite.disabled = index === realisations.length - 1;
+
 }
 
 // Fonction pour convertir hex en RGB
@@ -232,9 +227,7 @@ indicateurs.forEach((ind, i) => {
     });
 });
 
-mettreAJour();
-
-// Navigation au scroll - effet de transparence
+// Navigation au scroll
 const navigation = document.querySelector('.navigation');
 let dernierScroll = 0;
 
@@ -258,12 +251,12 @@ boutonsFaq.forEach(bouton => {
         const itemFaq = bouton.parentElement;
         const estActif = itemFaq.classList.contains('actif');
         
-        // Fermer tous les autres items
+        // Fermeture de tous les autres items
         document.querySelectorAll('.item-faq').forEach(item => {
             item.classList.remove('actif');
         });
         
-        // Ouvrir l'item cliqué si ce n'était pas déjà actif
+        // Ouverture de l'item cliqué si ce n'était pas déjà actif
         if (!estActif) {
             itemFaq.classList.add('actif');
         }
@@ -284,7 +277,7 @@ const observateur = new IntersectionObserver((entrees) => {
     });
 }, observerOptions);
 
-// Observer les cartes d'expertise
+// Observation des cartes d'expertise
 const cartesExpertise = document.querySelectorAll('.carte-expertise');
 cartesExpertise.forEach((carte, index) => {
     carte.classList.add('anime-scroll');
@@ -292,7 +285,7 @@ cartesExpertise.forEach((carte, index) => {
     observateur.observe(carte);
 });
 
-// Observer les cartes de réalisation
+// Observation des cartes de réalisation
 const cartesRealisation = document.querySelectorAll('.carte-realisation');
 cartesRealisation.forEach((carte, index) => {
     carte.classList.add('anime-scroll');
@@ -300,15 +293,8 @@ cartesRealisation.forEach((carte, index) => {
     observateur.observe(carte);
 });
 
-// Observer les items FAQ
-// const itemsFaq = document.querySelectorAll('.item-faq');
-// itemsFaq.forEach((item, index) => {
-//     item.classList.add('anime-scroll');
-//     item.style.transitionDelay = `${index * 0.05}s`;
-//     observateur.observe(item);
-// });
 
-// Effet de particules subtil (simplifié)
+// Effet de particules
 const sectionHero = document.querySelector('.section-hero');
 const nombreParticules = 15;
 
@@ -330,7 +316,7 @@ for (let i = 0; i < nombreParticules; i++) {
     sectionHero.appendChild(particule);
 }
 
-// Animation CSS pour les particules
+// Animation CSS des particules
 const styleParticules = document.createElement('style');
 styleParticules.textContent = `
     @keyframes flotteParticule {
@@ -352,7 +338,7 @@ styleParticules.textContent = `
 `;
 document.head.appendChild(styleParticules);
 
-// Smooth scroll pour tous les liens d'ancrage
+// Smooth scroll des liens d'ancrage
 document.querySelectorAll('a[href^="#"]').forEach(lien => {
     lien.addEventListener('click', function(e) {
         e.preventDefault();
@@ -360,7 +346,7 @@ document.querySelectorAll('a[href^="#"]').forEach(lien => {
         
         if (cibleId === '#') return;
         
-        // Fermer le menu mobile si ouvert
+        // Fermeture du menu mobile si ouvert
         if (menuMobile && menuMobile.classList.contains('actif')) {
             menuMobile.classList.remove('actif');
             if (boutonMenu) boutonMenu.classList.remove('actif');
@@ -377,12 +363,12 @@ document.querySelectorAll('a[href^="#"]').forEach(lien => {
     });
 });
 
-// Préchargement terminé
+// Préchargement terminé - ajout de la classe charge
 window.addEventListener('load', () => {
     document.body.classList.add('charge');
 });
 
-// Gestion du redimensionnement de la fenêtre pour le carrousel
+// Gestion du redimensionnement de la fenêtre
 let timeoutRedimensionnement;
 window.addEventListener('resize', () => {
     clearTimeout(timeoutRedimensionnement);
