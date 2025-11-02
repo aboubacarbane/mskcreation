@@ -11,6 +11,10 @@ boutonMenu.addEventListener('click', () => {
 const liensMobile = document.querySelectorAll('.lien-mobile');
 liensMobile.forEach(lien => {
     lien.addEventListener('click', () => {
+        // Ajouter la classe active au lien cliqué
+        liensMobile.forEach(l => l.classList.remove('active'));
+        lien.classList.add('active');
+        
         menuMobile.classList.remove('actif');
         boutonMenu.classList.remove('actif');
     });
@@ -34,43 +38,43 @@ const realisations = [
         abonnes: '22.9K',
         description: '💰 Expert en finance, guide pour épargner et investir intelligemment.',
         video: 'https://player.vimeo.com/video/1066106524?h=6d45c0f810&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=player0&background=1&app_id=58479',
-        couleur: ['#ff6b35', '#f7931e', '#ff4444'] // Rouge-orange pour Andreas
+        couleur: ['#ef4444', '#dc2626'] // Rouge-orange pour Andreas
     },
     {
-        badge: 'Coach Business',
-        nom: 'Marie Dubois',
-        handle: '@mariedubois.coach',
-        abonnes: '18.5K',
-        description: '📈 Accompagnement des entrepreneurs vers le succès et la croissance.',
+        badge: 'Gestionnaire patrimonial',
+        nom: 'Gerald Lapointe',
+        handle: '@geraldimmopatrimoine',
+        abonnes: '17.7K',
+        description: '💸 Expert en gestion de patrimoine ayant réalisé plus de 200 projets immobiliers avec succès.',
         video: 'https://player.vimeo.com/video/1066109636?h=6f9a86b6d3&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=player1&background=1&app_id=58479',
-        couleur: ['#7c3aed', '#a855f7', '#c084fc'] // Violet pour Marie
+        couleur: ['#a855f7', '#7e22ce'] // Violet pour Marie
     },
     {
-        badge: 'Lifestyle',
-        nom: 'Sophie Martin',
-        handle: '@sophiemartin.life',
-        abonnes: '35.2K',
-        description: '✨ Partage de conseils lifestyle, bien-être et développement personnel.',
+        badge: 'Podcasteur',
+        nom: 'Nico - Osez By Nico',
+        handle: '@osezbynico',
+        abonnes: '17.4K',
+        description: '🎙️ Podcasteur et journaliste produisant du contenu vidéo et audio sur divers sujets.',
         video: 'https://player.vimeo.com/video/1066110013?h=07be361f94&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=player2&background=1&app_id=58479',
-        couleur: ['#ec4899', '#f472b6', '#fbbf24'] // Rose-jaune pour Sophie
+        couleur: ['#eab308', '#d97706'] // Rose-jaune pour Sophie
     },
     {
-        badge: 'Fitness',
-        nom: 'Thomas Leroy',
-        handle: '@thomasfit',
-        abonnes: '42.8K',
-        description: '💪 Coach sportif, programmes d\'entraînement et nutrition.',
+        badge: 'Entrepreneur',
+        nom: 'Tom Adrien',
+        handle: '@tomadrien',
+        abonnes: '6.6K',
+        description: '🎥 Entrepreneur ayant créé orsay.ai, une plateforme innovante pour la gestion de projets et la collaboration en ligne.',
         video: 'https://player.vimeo.com/video/1066107128?h=ab229066e0&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=player3&background=1&app_id=58479',
-        couleur: ['#10b981', '#34d399', '#22d3ee'] // Vert-cyan pour Thomas
+        couleur: ['#3b82f6', '#1d4ed8'] // Vert-cyan pour Thomas
     },
     {
-        badge: 'Art & Créativité',
-        nom: 'Lucas Moreau',
-        handle: '@lucasmor.art',
-        abonnes: '28.3K',
-        description: '🎨 Artiste créatif, partage de techniques et d\'inspirations artistiques.',
+        badge: 'Entrepreneur',
+        nom: 'Romain Reverchon',
+        handle: '@romain_reverchon',
+        abonnes: '1.3K',
+        description: '💶 Entrepreneur aidant les clients à optimiser la rentabilité de leurs marques.',
         video: 'https://player.vimeo.com/video/1066109193?h=33811542f7&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=player4&background=1&app_id=58479',
-        couleur: ['#f59e0b', '#fbbf24', '#fcd34d'] // Jaune-orange pour Lucas
+        couleur: ['#22c55e', '#059669'] // Jaune-orange pour Lucas
     }
 ];
 
@@ -157,7 +161,7 @@ function mettreAJour() {
     if (descriptionEl) descriptionEl.textContent = r.description;
     
     // Mettre à jour les couleurs
-    const [c1, c2, c3] = r.couleur;
+    const [c1, c2] = r.couleur;
     const rgb = hexToRgb(c1);
     
     // Appliquer la couleur au badge

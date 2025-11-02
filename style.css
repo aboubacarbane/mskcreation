@@ -27,12 +27,24 @@ html {
 .logo-container {
     display: flex;
     align-items: center;
+    animation: fadeInLeft 0.8s ease forwards;
 }
 
 .logo-container img {
     height: 50px;
     width: auto;
     object-fit: contain;
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .logo-text {
@@ -60,7 +72,7 @@ html {
 }
 
 .bouton-contact {
-    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
     color: white;
     padding: 0.75rem 1.5rem;
     border-radius: 2rem;
@@ -75,7 +87,7 @@ html {
 }
 
 .bouton-contact-mobile {
-    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
     color: white;
     padding: 0.75rem 1.5rem;
     border-radius: 0.5rem;
@@ -129,6 +141,11 @@ html {
     color: #363535c5;
     text-decoration: none;
     padding: 0.75rem 0;
+    transition: color 0.3s ease;
+}
+
+.lien-mobile.active {
+    color: #2563eb;
 }
 
 
@@ -227,7 +244,7 @@ html {
 
 .bouton-hero {
     display: inline-block;
-    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    background: linear-gradient(135deg, #2563eb 0%, #c346e5 100%);
     color: white;
     padding: 1rem 2.5rem;
     border-radius: 1rem;
@@ -282,7 +299,7 @@ html {
     align-items: center;
     gap: 0.5rem;
     background: #ffffff;
-    border: 1px solid rgba(70, 82, 74, 0.3);
+    border: 0.5px solid rgba(70, 82, 74, 0.09);
     padding: 0.75rem 1.5rem;
     border-radius: 2rem;
     color: #707070;
@@ -327,9 +344,10 @@ html {
 
 .grille-expertises {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
     margin-top: 4rem;
+    padding: 0 1.5rem;
 }
 
 .carte-expertise {
@@ -385,7 +403,7 @@ html {
 
 .bouton-secondaire {
     display: inline-block;
-    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);;
+    background: linear-gradient(135deg, #2563eb 0%, #db2777  100%);
     color: #ffffff;
     padding: 1rem 2rem;
     border-radius: 0.75rem;
@@ -395,7 +413,7 @@ html {
 }
 
 .bouton-secondaire:hover {
-    box-shadow: 0 2px 4px #7c8fb9;
+    box-shadow: 0 8px 25px rgba(79, 70, 229, 0.4);
 }
 
 /* Section Réalisations */
@@ -413,7 +431,7 @@ html {
     font-weight: 900;
     text-align: center;
     margin-bottom: 1rem;
-    background: linear-gradient(to right, #4f46e5 0%, #db2777 100%);
+    background: linear-gradient(to right, #4f46e5 0%, #ff0571 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -488,7 +506,7 @@ html {
 .cadre-video {
     position: relative;
     padding: 30px;
-    background: #ff0000;
+    background: linear-gradient(to right, #ef4444 0%, #dc2626  100%);
     border-radius: 1.5rem;
     box-shadow: 
         0 10px 40px rgba(0, 0, 0, 0.3),
@@ -530,10 +548,10 @@ html {
 .cadre-video::after {
     content: '';
     position: absolute;
-    top: 25px;
+    top: 26px;
     left: 29px;
     right: 29px;
-    bottom: 25px;
+    bottom: 25.5px;
     border: 4px solid #e1e0e094;
     border-radius: 15px;
     z-index: 10;
@@ -698,7 +716,7 @@ html {
     display: inline-block;
     color: white;
     padding: 0.25rem 1rem;
-    border-radius: 1rem;
+    border-radius: 1.5rem;
     font-size: 0.875rem;
     font-weight: 600;
     margin-bottom: 1rem;
@@ -724,7 +742,8 @@ html {
     margin-bottom: 1.5rem;
     position: relative;
     /* border: 1px solid transparent; */
-    max-width: 50%;
+    /* max-width: 50%; */
+    width: fit-content;
 }
 
 
@@ -742,15 +761,6 @@ html {
     margin-left: 0.5rem;
 }
 
-.info-instagram {
-    display: flex;
-    color: white;
-    flex-direction: column;
-    gap: 0.1rem;
-    flex: 1;
-    max-width: 100%;
-    width: 300px;
-}
 
 .handle-realisation {
     color: #ffffff;
@@ -850,32 +860,33 @@ html {
     content: '';
     position: absolute;
     left: 1rem;
-    top: 0.75rem;
-    bottom: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
     width: 4px;
+    height: 30px;
     border-radius: 2px;
     transition: all 0.3s ease;
 }
 
 /* Couleurs différentes pour chaque item-faq */
 .item-faq:nth-child(1) .bouton-faq::before {
-    background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+    background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
 }
 
 .item-faq:nth-child(2) .bouton-faq::before {
-    background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+    background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
 }
 
 .item-faq:nth-child(3) .bouton-faq::before {
-    background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);
+    background: linear-gradient(135deg, #eab308 0%, #d97706 100%);
 }
 
 .item-faq:nth-child(4) .bouton-faq::before {
-    background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
 }
 
 .item-faq:nth-child(5) .bouton-faq::before {
-    background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+    background: linear-gradient(135deg, #22c55e 0%, #059669 100%);
 }
 
 .icone-faq {
@@ -910,8 +921,8 @@ html {
     display: inline-block;
     background: #ffffff;
     color: #000000b0;
-    padding: 0.5rem;
-    border-radius: 1rem;
+    padding: 0.7rem;
+    border-radius: 1.5rem;
     text-decoration: none;
     font-weight: 500;
     transition: all 0.5s ease;
@@ -1115,15 +1126,21 @@ html {
         padding: 6rem 0;
         background: 
             radial-gradient(circle at 100% 30%, #ffbf0022 0%, transparent 20%),
+            radial-gradient(circle at 100% 100%, #bfdbfe99 0%, transparent 30%),
             radial-gradient(circle at 50% 50%, #f0f9ff 0%, #eef2ff 100%);
     }
 
     .description-footer {
         font-size: 0.9rem;
     }
+
+    .carte-realisation {
+        margin-left: -20px;
+        margin-right: -20px;
+    }
     /* Bouton contact pleine largeur et centré sur mobile */
     .bouton-contact-mobile {
-        background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+        background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
         color: white;
         padding: 0.75rem 1.5rem;
         border-radius: 0.5rem;
