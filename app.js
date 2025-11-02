@@ -96,7 +96,6 @@ function initVideos() {
         iframe.width = '100%';
         iframe.height = '100%';
         iframe.allow = 'autoplay; fullscreen; picture-in-picture';
-        iframe.allowFullscreen = true;
         iframe.style.cssText = 'position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;';
         if (i === 0) {
             iframe.style.opacity = '1';
@@ -368,13 +367,5 @@ window.addEventListener('load', () => {
     document.body.classList.add('charge');
 });
 
-// Gestion du redimensionnement de la fenêtre
-let timeoutRedimensionnement;
-window.addEventListener('resize', () => {
-    clearTimeout(timeoutRedimensionnement);
-    timeoutRedimensionnement = setTimeout(() => {
-        mettreAJourCarrousel();
-    }, 250);
-});
 
 

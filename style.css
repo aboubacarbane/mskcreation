@@ -682,8 +682,7 @@ body {
 .bloc-instagram {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
+    gap: 0.75rem;
     padding: 0.5rem;
     border-radius: 1rem;
     background: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #eab308 100%);
@@ -691,7 +690,6 @@ body {
     position: relative;
     width: fit-content;
 }
-
 
 .icone-instagram {
     background-color: white;
@@ -703,15 +701,27 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 0.5rem;
+    flex-shrink: 0;
 }
 
+.contenu-texte-instagram {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
+    flex: 1;
+}
 
 .handle-realisation {
     color: #ffffff;
     margin: 0;
     font-size: 1rem;
     font-weight: 600;
+    display: block;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    white-space: normal;
 }
 
 .abonnes-realisation {
@@ -1031,18 +1041,23 @@ body {
         font-size: 3rem;
     }
 
+    .sous-titre-section br {
+        display: none;
+    }
+
     .titre-section-faq {
-        font-size: 2rem;
+        font-size: 2.5rem;
     }
 
     .grille-stats {
         grid-template-columns: repeat(2, 1fr);
-        gap: 0.5rem;
+        gap: 1rem;
     }
     .grille-stats .carte-stat:nth-child(3) {
         grid-column: 1 / -1;
         justify-self: center;
         max-width: calc(50% - 0.25rem);
+        padding: 0.8rem;
     }
 
     .grille-expertises {
@@ -1077,7 +1092,7 @@ body {
     }
 
     .sous-titre-section-faq {
-        font-size: 0.8rem;
+        font-size: 0.95rem;
     }
 
     .description-footer {
@@ -1085,8 +1100,8 @@ body {
     }
 
     .carte-realisation {
-        margin-left: -20px;
-        margin-right: -20px;
+        margin-left: -45px;
+        margin-right: -45px;
     }
     .bouton-contact-mobile {
         background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
