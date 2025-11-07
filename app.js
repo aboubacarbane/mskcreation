@@ -362,10 +362,6 @@ document.querySelectorAll('a[href^="#"]').forEach(lien => {
     });
 });
 
-// Préchargement terminé - ajout de la classe charge
-window.addEventListener('load', () => {
-    document.body.classList.add('charge');
-});
 
 
 
